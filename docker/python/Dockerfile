@@ -60,4 +60,3 @@ ADD start.sh .
 RUN chmod 777 start.sh
 USER tier
 CMD ["sh", "start.sh"]
-# CMD ["echo", "test"]
