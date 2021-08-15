@@ -1,0 +1,13 @@
+.vscode
+**/__pycache__
+**/__MACOSX
+
+**/postgresql-42.2.23.jar
+
+.DS_Store
+data/log/log*
+data/**json
+data/**zip
+
+.bash_history
+.python_history

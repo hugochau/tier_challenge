@@ -1,0 +1,31 @@
+# docker-compose.yml
+
+version: '3.4'
+
+services:
+    postgres:
+        container_name: "tier_postgres"
+        build:
+            context: ./postgres
+            dockerfile: Dockerfile
+        # volumes:
+        #     - db_config:/etc/postgresql:rw
+        #     - db_data:/var/lib/postgresql:rw
+        ports:
+            - "5432:5432"
+
+    python:
+        container_name: "tier_python"
+        build:
+            context: ./python
+            dockerfile: Dockerfile
+        environment:
+            - PGHOST=${PGHOST}
+            # - PGPASSWORD=${PGPASSWORD}
+            # - TIER_WORKSPACE=/home/tier/workspace
+        volumes:
+            - ${TIER_WORKSPACE}:/home/tier/workspace
+
+# volumes:
+#     db_data: {}
+#     db_config: {}
