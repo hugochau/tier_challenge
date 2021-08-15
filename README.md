@@ -143,7 +143,7 @@ Further improvements to the code, listed below:
 
 The idea is to capture those events from mutliple event streams, write them into the datalake and ultimately ingest a subset into a datawarehouse.
 
-One can achieve that in an AWS ecosystem, by leveraging the following services:
+One can build such architecture in an AWS ecosystem, by leveraging the following services:
 - Kinesis - collecting the streaming data
 - Firehose - loading data into the data lake
 - S3 - hosting the data lake
@@ -153,15 +153,17 @@ One can achieve that in an AWS ecosystem, by leveraging the following services:
 Key takeaways from the proposed architecture:
 - These are managed services. This is not the most cost efficient approach. However, it makes it easy to scale up and drastically decreases the maintenance effort.
 - Numbers of Kinesis shards must be properly defined. Underestimation would result in data loss whereas overestimating would result in money loss.
-- Kinesis processes events in order. There should be no data loss, assuming the system is well designed.
+- Kinesis processes events in order. There should be no data loss, assuming the system is well designed. Main delivery KPIs can be monitored on AWS Cloudwatch.
 - For a better integration to any project in the Hadoop ecosystem, Firehouse should deliver the data to the data lake in a parquet format.
-- S3 is quite cost efficient.
+- Amazon S3 is a decent approach for building a data lake because of its virtually unlimited scalability.
 - Glue is well designed for data flows within the AWS ecosystem.
 - Selected RDBMS could be postgreSQL based - native or Redshift.
 
-Alternatives:
-- Kinesis: Apache Kafka, Spark Streaming
-- Glue: Airflow
+Alternative:
+- Apache Kafka for capturing events
+- S3 for storing the data
+- Spark for aggregating data into the DWH
+- Airflow for orchestrating data flows
 
 As opposed to managed services, open source alternatives should certainly decrease the overall infrastructure cost. However it should result in an extra maintenance effort.
 
