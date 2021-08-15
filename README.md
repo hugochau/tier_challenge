@@ -141,16 +141,6 @@ Further improvements to the code, listed below:
 
 ## Case Study
 
-Starting with the ingested data, the ultimate goal is to enable - power or business - users answering multiple questions around the topic of invoices. From a technical perspective, we need to focus on scalabilty and performance - left aside the quality of the data.
-
-Assuming the data is stored in a typical data warehouse, managed or not. The idea is to release the pressure on the system by either:
-- allocating a small share of the system resourses - typically CPU/Memory - to the end users , to avoid any engine throttle.
-- exporting the necessary datasets to a 3rd part tool, such as Google BigQuery or Elasticsearch. These are two powerful analytics engines and are well connected to vizualisation tools, respectively Google Data Studio and Kibana.
-
-In any case, ELT can be scheduled on a daily basis using various products such as AWS Data, Pipeline, Glue, Lambda; orchestration tools such as Apache Airflow, cron jobs or even Jenkins. This depends on the allocated budget and daily usage. Using these tools, we can also give our users the possiblity to schedule their own ad-hoc queries. This releases the pressure on the Data Engineering team and gives more flexibility to the users for building their reporting stack.
-
-The ingested data has some nested rows - `line_items` and `discounts`. This can be quite confusing for our non technical end users. The idea here is to normalize the invoice table by creating two separate tables, one for each nested attribute. Suggested logical schema provided as `doc/personio_logical_schema.png`.
-
 ## License
 This product is licensed under the [MIT](https://choosealicense.com/licenses/mit/) license.
 
