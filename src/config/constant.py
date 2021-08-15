@@ -14,8 +14,6 @@ import datetime
 
 
 # folders
-# WORKSPACE = os.getenv('TIER_WORKSPACE')
-# DATA_FOLDER = os.path.join(WORKSPACE, 'data')
 DATA_FOLDER = '../data'
 
 # logger

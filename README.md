@@ -7,7 +7,7 @@ Tier Coding Challenge aims at giving the Senior Data Engineers candidates an ide
 To be able to run this app, you must have [Docker](https://docs.docker.com/get-docker/) installed on your machine.
 
 Set up the following environement variable:
-- `$PGHOST`: postgresql host
+- `$PGHOST`: postgresql host - the docker VM IP
 
 Input data files are not included in the repository. Copy them into `data`.
 
@@ -140,6 +140,30 @@ Further improvements to the code, listed below:
   - Decorate other methods
 
 ## Case Study
+
+The idea is to capture those events from mutliple event streams, write them into the datalake and ultimately ingest a subset into a datawarehouse.
+
+One can achieve that in an AWS ecosystem, by leveraging the following services:
+- Kinesis - collecting the streaming data
+- Firehose - loading data into the data lake
+- S3 - hosting the data lake
+- Glue - building and scheduling the ELT jobs
+- RDS - hosting the RDBMS
+
+Key takeaways from the proposed architecture:
+- These are managed services. This is not the most cost efficient approach. However, it makes it easy to scale up and drastically decreases the maintenance effort.
+- Numbers of Kinesis shards must be properly defined. Underestimation would result in data loss whereas overestimating would result in money loss.
+- Kinesis processes events in order. There should be no data loss, assuming the system is well designed.
+- For a better integration to any project in the Hadoop ecosystem, Firehouse should deliver the data to the data lake in a parquet format.
+- S3 is quite cost efficient.
+- Glue is well designed for data flows within the AWS ecosystem.
+- Selected RDBMS could be postgreSQL based - native or Redshift.
+
+Alternatives:
+- Kinesis: Apache Kafka, Spark Streaming
+- Glue: Airflow
+
+As opposed to managed services, open source alternatives should certainly decrease the overall infrastructure cost. However it should result in an extra maintenance effort.
 
 ## License
 This product is licensed under the [MIT](https://choosealicense.com/licenses/mit/) license.
