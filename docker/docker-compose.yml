@@ -21,10 +21,8 @@ services:
             dockerfile: Dockerfile
         environment:
             - PGHOST=${PGHOST}
-            # - PGPASSWORD=${PGPASSWORD}
-            # - TIER_WORKSPACE=/home/tier/workspace
         volumes:
-            - ${TIER_WORKSPACE}:/home/tier/workspace
+            - ../:/home/tier/workspace
 
 # volumes:
 #     db_data: {}

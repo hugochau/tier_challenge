@@ -9,7 +9,6 @@ from pyspark.sql import SparkSession
 
 from util.util import get_pg_types
 from config.constant import PGHOST
-# from config.constant import PGHOST, PGPASSWORD
 
 class Postgres:
     def __init__(self, spark: SparkSession) -> None:
@@ -31,10 +30,6 @@ class Postgres:
             - table: target table in RDBMS
         """
         url = f"jdbc:postgresql://{PGHOST}/tier"
-        # properties = {
-        #     "user": "tier",
-        #     "password": PGPASSWORD
-        # }
         properties = {
             "user": "tier"
         }
